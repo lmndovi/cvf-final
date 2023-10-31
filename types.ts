@@ -11,3 +11,9 @@ export interface CropsForHarvest {
   harvestDate: string;
   image: any;
 }
+
+export interface CarouselImages {
+  _id: string;
+  image: any;
+  alt: string;
+}

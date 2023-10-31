@@ -14,10 +14,19 @@ import "./styles.css";
 // import required modules
 import { Keyboard, Pagination, Navigation } from "swiper/modules";
 
-// Import the images and types from the 'images.ts' file
-import { images, Image } from "@/images"; // Adjust the import path
+import { CarouselImages } from "@/types";
+import { client } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
 
-export default function ImageCarousel() {
+// Import the images and types from the 'images.ts' file
+// import { images, Image } from "@/images"; // Adjust the import path
+
+export default async function ImageCarousel() {
+  const images = await client.fetch<CarouselImages[]>(
+    `*[_type == "carouselImages"]`
+  );
+  console.log(images);
+
   return (
     <>
       <Swiper
@@ -34,9 +43,14 @@ export default function ImageCarousel() {
         modules={[Keyboard, Pagination, Navigation]}
         className="mySwiper rounded-2xl"
       >
-        {images.map((image: Image) => (
-          <SwiperSlide key={image.id}>
-            <img src={image.path} alt={image.alt} />
+        {images.map((image) => (
+          <SwiperSlide key={image._id}>
+            <img
+              src={urlForImage(image.image).url()}
+              alt={image.alt}
+              height={300}
+              width={500}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
