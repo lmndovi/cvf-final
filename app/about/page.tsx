@@ -45,10 +45,14 @@ const about = () => {
           </div>
         </div>
         <div className="p-4 col-span-1 md:max-w-[550px]">
-          <Image src={veg} alt="Vegetables" className="rounded-lg h-96 w-fit" />
+          <Image
+            src={veg}
+            alt="Vegetables"
+            className="rounded-lg h-96 md:h-full w-fit"
+          />
         </div>
       </div>
-      <div className="flex flex-col py-10 h-96 w-fit md:w-[600px] mx-auto border-t-2 border-[#dc0d0d]">
+      <div className="flex flex-col py-10 h-96 w-fit md:w-[600px] mx-auto border-t-2 border-[#dc0d0d] mb-12">
         <section className="mx-auto w-96 flex-col space-y-6">
           <h1 className="uppercase text-xl font-medium text-center tracking-widest">
             Community Service
